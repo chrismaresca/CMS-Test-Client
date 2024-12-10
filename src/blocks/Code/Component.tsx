@@ -8,6 +8,7 @@ export type CodeBlockProps = {
   blockType: 'code'
 }
 
+
 type Props = CodeBlockProps & {
   className?: string
 }

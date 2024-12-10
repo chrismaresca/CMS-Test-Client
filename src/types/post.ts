@@ -1,10 +1,12 @@
+// @todo: fix this
+
 export type Post = {
   id: string;
   title: string;
   slug: string;
   createdAt: string;
   updatedAt: string;
-  content: Record<string, unknown>;
+  content: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any; // Allow any additional string-keyed fields
 };

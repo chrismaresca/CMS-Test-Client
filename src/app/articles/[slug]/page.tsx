@@ -7,8 +7,9 @@ import { BRAND_ID } from "@/constants";
 
 // Utilities
 import { extractSlugs } from "@/utilities/extractSlugs";
-import { fetchPostBySlug, fetchPostsByBrand } from "@/utilities/getPosts";
+import { fetchArticlesByBrand, fetchArticleBySlug } from "@/utilities/getPosts";
 import { Button } from "@/components/ui/button";
+import { CustomMDX } from "@/components/mdx-components";
 
 
 // Revalidate every hour (3600 seconds)
@@ -21,9 +22,9 @@ export const dynamicParams = true;
  * Generates static parameters for the dynamic blog post pages.
  * @returns {Array<{ slug: string }>} An array of slugs.
  */
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   try {
-    const posts = await fetchPostsByBrand(BRAND_ID);
+    const posts = await fetchArticlesByBrand(BRAND_ID);
     return extractSlugs(posts);
   } catch (error) {
     console.error("Error generating static params:", error);
@@ -33,7 +34,7 @@ export async function generateStaticParams() {
 
 export default async function BlogPost({ params: paramsPromise }: NextParams) {
   const { slug = "" } = await paramsPromise;
-  const post: Post = await fetchPostBySlug(slug);
+  const post: Post = await fetchArticleBySlug(slug);
 
   // TODO: Redirect to 404 if post is not found
   if (!post) {
@@ -48,6 +49,7 @@ export default async function BlogPost({ params: paramsPromise }: NextParams) {
     <main className="container mx-auto px-4 py-8">
       <article>
         <h1 className="text-4xl font-bold text-white mb-6">{post.title}</h1>
+        <CustomMDX source={post.content} />
         {/* <RichText2 className="max-w-[48rem] mx-auto" data={post.content} enableGutter={false} /> */}
       </article>
     </main>
