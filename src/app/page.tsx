@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 // Utilities
-import { getTags } from "@/utilities/getTags";
+import { callHealthCheck } from "@/utilities/getHealthCheck";
 
 export default async function Home() {
-  const tags = await getTags();
+  const healthCheck = await callHealthCheck();
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -20,7 +20,7 @@ export default async function Home() {
           <li className="mb-2">
             Get started by editing{" "}
 
-            the tags are {JSON.stringify(tags)}
+              the server is {JSON.stringify(healthCheck)}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
               src/app/page.tsx
             </code>
