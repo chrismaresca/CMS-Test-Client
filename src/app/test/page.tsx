@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>Hello world!</div>
+    <div className="text-red-500">Hello world!</div>
   )
 }
