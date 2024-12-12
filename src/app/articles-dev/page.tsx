@@ -1,24 +1,33 @@
 import React from "react";
 
+// Next Image
+import Image from "next/image";
+
 // Article Components
 import { ArticleTags } from "@/components/articles/ArticleTags";
 import { ArticleHeader } from "@/components/articles/ArticleHeader";
 import { ArticleReactions } from "@/components/articles/ArticleReactions";
 import { ArticleAuthor } from "@/components/articles/ArticleAuthor";
-
-// Article SVG Components
-import { ArticleShare } from "@/components/articles/ArticleShare";
+// import { ArticleShare } from "@/components/articles/ArticleShare";
 
 export default function page() {
+
+  const author = {
+    firstName: "Jese",
+    lastName: "Leos",
+    title: "Bootcamp Grad & Dev",
+    bio: "Hey! I'm Jese Leos. I'm a career-changer, bootcamp grad, and developer.",
+    location: "California, United States",
+    dateCreated: new Date(),
+  };
+
   return (
     <>
       <main className="pt-8 pb-16 lg:pt-16 lg:pb-24">
         <div className="flex justify-between px-8 lg:px-4 2xl:px-0 mx-auto max-w-screen-xl ">
-          {/* <div className="hidden mb-6 xl:block lg:w-52">
-            <div className="sticky top-4"></div>
-          </div> */}
+
           <article className="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert font-mono">
-            <ArticleHeader title="Prototyping from A to Z: Best Practices for Successful Prototypes" author="Jese Leos" date="February 8, 2022" mainTag="Design" />
+            <ArticleHeader title="Prototyping from A to Z: Best Practices for Successful Prototypes" author={author} date={new Date()} mainTagName="Design" />
             {/* <ArticleShare /> */}
             <p className="lead">Flowbite is an open-source library of UI components built with the utility-first classes from Tailwind CSS. It also includes interactive elements such as dropdowns, modals, datepickers.</p>
             <p>Before going digital, you might benefit from scribbling down some ideas in a sketchbook. This way, you can think things through before committing to an actual design project.</p>
@@ -26,7 +35,13 @@ export default function page() {
               But then I found a <a href="https://flowbite.com">component library based on Tailwind CSS called Flowbite</a>. It comes with the most commonly used UI components, such as buttons, navigation bars, cards, form elements, and more which are conveniently built with the utility classes from Tailwind CSS.
             </p>
             <figure>
-              <img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt="" />
+              <Image 
+                src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" 
+                alt="Typography example image" 
+                width={800}
+                height={400}
+                className="max-w-full h-auto"
+              />
               <figcaption>Digital art by Anonymous</figcaption>
             </figure>
             <h2>Getting started with Flowbite</h2>
@@ -146,7 +161,7 @@ export default function page() {
             </table>
             <h3>Best practices for setting up your prototype</h3>
             <p>
-              <strong>Low fidelity or high fidelity?</strong> Fidelity refers to how close a prototype will be to the real deal. If you’re simply preparing a quick visual aid for a presentation, a low-fidelity prototype — like a wireframe with placeholder images and some basic text — would be more than enough. But if you’re going for more intricate usability testing, a high-fidelity prototype — with on-brand colors, fonts and imagery — could help get more pointed results.
+              <strong>Low fidelity or high fidelity?</strong> Fidelity refers to how close a prototype will be to the real deal. If youre simply preparing a quick visual aid for a presentation, a low-fidelity prototype — like a wireframe with placeholder images and some basic text — would be more than enough. But if you’re going for more intricate usability testing, a high-fidelity prototype — with on-brand colors, fonts and imagery — could help get more pointed results.
             </p>
             <p>
               <strong>Consider your user</strong>. To create an intuitive user flow, try to think as your user would when interacting with your product. While you can fine-tune this during beta testing, considering your user’s needs and habits early on will save you time by setting you on the right path.
@@ -167,7 +182,7 @@ export default function page() {
               {/* End Reactions */}
 
               {/* Start Author */}
-              <ArticleAuthor />
+              <ArticleAuthor author={author} />
               {/* End Author */}
 
               {/* Replace the Tags section with the new component */}
